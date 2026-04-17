@@ -8,11 +8,11 @@
 ![Python](https://img.shields.io/badge/Python-3.x-3776AB)
 ![Status](https://img.shields.io/badge/Status-MVP-10B981)
 
-**A Claude Code skill for building a personal self-profile**
+**Turn yourself into a me-skill that can stay alive in the digital world**
 
-_Turn scattered materials into a proper me profile._
+_Memories scatter, chats sink, and the way you speak slips away with time; me-skill tries to keep that speaking version of you from disappearing._
 
-_And clean up all the lines that definitely do not sound like you._
+_It gathers your preferences, tone, boundaries, and all those “this does not sound like me at all” moments into a digital self-profile that keeps growing._
 
 [Install](#install) · [Usage](#usage) · [Example](#example) · [Docs](#docs)
 
