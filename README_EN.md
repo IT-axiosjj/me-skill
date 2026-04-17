@@ -2,35 +2,62 @@
 
 [中文](./README.md) | [English](./README_EN.md)
 
-`me-skill` is a Claude Code skill / local workflow for building a structured personal profile from your own materials.
+`me-skill` is a **Claude Code personal-self skill** for turning your own materials into a structured, revisable me profile.
 
-Its goal is not just to mimic tone. It tries to organize your materials into a more stable structure:
+It is inspired by the direction of `yourself-skill`, but the current version is closer to a **practical MVP**:
 
-- who you are
-- how you speak
-- what you value
-- where your boundaries are
-- what clearly does **not** sound like you
+- collect notes / chat / correction materials
+- generate `self.md`, `persona.md`, and `profile.md`
+- keep updating the profile as new materials arrive
 
-Final outputs:
+## What problem it tries to solve
 
-- `self.md`
-- `persona.md`
-- `profile.md`
-- `records.json`
+Many "digital self" projects focus too much on surface tone mimicry. The result is often:
 
-## What it is useful for
+- somewhat similar style, but unstable
+- facts, values, and boundaries mixed together
+- no clear idea of what sounds like you and what clearly does not
 
-- building a first draft of your AI persona
-- organizing your long-term communication style
-- turning scattered notes, chats, and corrections into structured assets
-- creating a foundation for stronger persona / memory systems later
+`me-skill` tries to separate these layers:
+
+- **self**: who you are, your preferences, values, and boundaries
+- **persona**: how you speak, how you express emotions, how you tend to decide
+- **profile**: the final summary used for simulation and reuse
+
+## Who this is for
+
+- people who want to build their own Claude Code personal skill
+- people who want to preserve long-term communication patterns
+- people who want to turn scattered materials into structured personal assets
+- people who want a repository that can later grow into a more complete skill product
 
 ## Documentation
 
 - [Installation & Usage](./INSTALL_AND_USAGE.md)
 - [What me-skill does](./WHAT_IS_ME_SKILL.md)
 - [Skill entry](./SKILL.md)
+
+## What this repository is
+
+This repository is not just a collection of Python scripts.
+
+More accurately, it has two layers:
+
+### 1. Skill layer
+- `SKILL.md`
+- `.claude/skills/me-skill/`
+- `prompts/`
+
+This is the part that makes it a Claude Code skill project.
+
+### 2. Workflow layer
+- `tools/import_text.py`
+- `tools/import_chat.py`
+- `tools/generate_me.py`
+- `tools/update_me.py`
+- `run_test_flow.py`
+
+This is the part that makes it runnable as a practical MVP.
 
 ## Current capabilities
 
@@ -61,13 +88,16 @@ python run_test_flow.py --name my_me --notes path/to/notes.txt --chat path/to/ch
 python run_test_flow.py --name my_me --notes path/to/notes.txt
 ```
 
-## Project structure
+## Install as a Claude Code skill
 
-- `SKILL.md`: skill entry description
-- `prompts/`: interview, analysis, build, merge, and correction templates
-- `tools/`: import, generate, update, and version backup scripts
-- `templates/`: sample inputs, usage notes, and helper docs
-- `selves/`: generated personal profiles
+If you want to use it in skill form, copy the mirrored directory into your Claude Code skills folder:
+
+- project-level: `.claude/skills/me-skill/`
+- global: `~/.claude/skills/me-skill/`
+
+This repository already includes the mirror directory:
+
+- `.claude/skills/me-skill/`
 
 ## Output structure
 
@@ -81,7 +111,7 @@ By default, generated files are written to:
 
 ## Current extraction logic
 
-The generator uses lightweight heuristic rules to split materials into:
+The generator currently uses lightweight heuristic rules to split materials into:
 
 - facts
 - stable preferences
@@ -93,7 +123,7 @@ The generator uses lightweight heuristic rules to split materials into:
 - anti-patterns / expressions that do not sound like you
 - representative quotes
 
-This is not a deep LLM-driven analyzer. It is a practical, runnable MVP.
+It is better described as a **runnable MVP skill repository**, not a fully mature persona intelligence system.
 
 ## Current limitations
 
@@ -101,51 +131,19 @@ This is not a deep LLM-driven analyzer. It is a practical, runnable MVP.
 - currently works best with txt / md style text materials
 - classification is heuristic, so manual review is still recommended
 
-## Recommended workflow
+## Typical workflow
 
 1. start with notes
-2. add chat samples to improve style accuracy
-3. add correction materials to define boundaries and anti-patterns
-4. keep refining `profile.md`
-
-## Built-in sample flow
-
-This repository already includes a self-generated test case.
-
-### Sample source files
-
-- `templates/generated_test/test_notes.txt`
-- `templates/generated_test/test_chat.txt`
-- `templates/generated_test/test_correction.txt`
-
-### Run the sample flow manually
-
-```bash
-python tools/import_text.py templates/generated_test/test_notes.txt --source self_notes --kind note --output templates/generated_test/test_notes.json
-python tools/import_chat.py templates/generated_test/test_chat.txt --source chat_sample --output templates/generated_test/test_chat.json
-python tools/import_text.py templates/generated_test/test_correction.txt --source correction_round --kind correction --output templates/generated_test/test_correction.json
-python tools/generate_me.py templates/generated_test/test_notes.json templates/generated_test/test_chat.json --name generated_case --output-dir selves
-python tools/update_me.py selves/generated_case templates/generated_test/test_correction.json
-```
-
-### Or run it with one command
-
-```bash
-python run_test_flow.py
-```
-
-## Multi-file input
-
-You can also pass multiple notes or chat files at once:
-
-```bash
-python run_test_flow.py --name my_me --notes notes_a.txt notes_b.md --chat chat_a.txt chat_b.md --correction correction.txt
-```
+2. add chat samples
+3. add correction materials
+4. generate the first me profile
+5. keep refining `profile.md`
 
 ## Repository positioning
 
-On GitHub, this project can be presented as:
+On GitHub, this project is best described as:
 
 - a Claude Code skill project
 - a personal digital-self organizer
-- a workflow template for building a structured me-profile from text materials
+- a workflow template for building a me profile from text materials
+- a foundation repository that can grow into a more complete skill product

@@ -2,29 +2,34 @@
 
 [中文](./README.md) | [English](./README_EN.md)
 
-`me-skill` 是一个用于生成“个人分身档案”的 Claude Code skill / 本地工作流工具。
+`me-skill` 是一个面向 **Claude Code** 的个人分身 skill，用来把你的文本材料整理成一个可持续修正、可持续迭代的 me profile。
 
-它的目标不是只模仿语气，而是把你的材料整理成更稳定的结构：
+它参考 `yourself-skill` 的方向，但当前版本更偏 **可运行的最小实现版**：
 
-- 你是谁
-- 你怎么说话
-- 你重视什么
-- 你的边界是什么
-- 哪些表达明显不像你
+- 先收集你的 notes / chat / correction
+- 再生成 `self.md`、`persona.md`、`profile.md`
+- 后续可以继续追加材料、修正风格、保留版本
 
-最终产出：
+## 这个 skill 想解决什么问题
 
-- `self.md`
-- `persona.md`
-- `profile.md`
-- `records.json`
+很多“数字分身”方案容易只停留在语气模仿，结果往往：
 
-## 适合用来做什么
+- 说话像，但不稳定
+- 能模仿一点风格，但抓不住边界
+- 不知道什么像你，也不知道什么明显不像你
 
-- 生成自己的 AI 分身底稿
-- 整理长期个人表达风格
-- 把零散文本、聊天、纠正语句变成结构化资料
-- 为后续更强的 persona / memory 系统打基础
+`me-skill` 的目标是把这些内容拆开：
+
+- **self**：你是谁，你的偏好、价值观、边界是什么
+- **persona**：你怎么说话，你的情绪和决策倾向是什么
+- **profile**：最终用于模拟和调用的摘要规则
+
+## 适合谁用
+
+- 想做自己的 Claude Code 分身 skill
+- 想沉淀长期表达风格的人
+- 想把零散材料整理成结构化个人档案的人
+- 想基于这个仓库继续扩展更完整 skill 体系的人
 
 ## 文档导航
 
@@ -32,46 +37,65 @@
 - [me-skill 是做什么的](./WHAT_IS_ME_SKILL.md)
 - [Skill 入口说明](./SKILL.md)
 
+## 在 Claude Code 里它是什么
+
+这个仓库不是单纯的 Python 脚本集合，它的目标是作为一个 **Claude Code skill 项目** 使用。
+
+当前仓库内已经包含：
+
+- `SKILL.md`：skill 入口说明
+- `.claude/skills/me-skill/`：可安装镜像目录
+- `prompts/`：访谈、分析、构建、合并、修正模板
+- `tools/`：用于跑通本地生成流程的辅助脚本
+
+也就是说：
+
+- 从 **GitHub 展示** 看，它是一个 skill 项目
+- 从 **本地运行** 看，它又是一个能实际生成 me profile 的工作流仓库
+
 ## 当前能力
 
-- 从纯文本导入材料：`tools/import_text.py`
-- 从简易聊天记录导入材料：`tools/import_chat.py`
-- 从一份或多份 JSON records 生成 me：`tools/generate_me.py`
-- 对已有 me 做增量更新并备份旧版本：`tools/update_me.py`
-- 一键跑通测试或真实材料流程：`run_test_flow.py`
-- 备份当前版本：`tools/version_manager.py`
+- 导入纯文本材料：`tools/import_text.py`
+- 导入简易聊天材料：`tools/import_chat.py`
+- 从一份或多份 records 生成 me：`tools/generate_me.py`
+- 用新增材料更新已有 me：`tools/update_me.py`
+- 自动保留旧版本：`tools/version_manager.py`
+- 一键跑通内置样例或真实材料：`run_test_flow.py`
 
 ## 快速开始
 
-### 方式一：直接跑内置样例
+### 1. 先直接跑内置样例
 
 ```bash
 python run_test_flow.py
 ```
 
-### 方式二：用你自己的材料
+### 2. 用你自己的材料生成 me
 
 ```bash
 python run_test_flow.py --name my_me --notes path/to/notes.txt --chat path/to/chat.txt --correction path/to/correction.txt
 ```
 
-### 方式三：先只用 notes 生成第一版
+### 3. 只有 notes 也可以先生成第一版
 
 ```bash
 python run_test_flow.py --name my_me --notes path/to/notes.txt
 ```
 
-## 目录结构
+## 安装成 Claude Code skill
 
-- `SKILL.md`：skill 入口说明
-- `prompts/`：访谈、分析、构建、合并、修正模板
-- `tools/`：导入、生成、更新、版本备份脚本
-- `templates/`：样例输入、命令说明、使用方式
-- `selves/`：生成出的个人资料
+如果你希望把它按 skill 的方式安装，可以把仓库中的镜像目录复制到 Claude Code 的 skills 目录：
 
-## 生成结果
+- 项目级：`.claude/skills/me-skill/`
+- 全局：`~/.claude/skills/me-skill/`
 
-默认输出到：
+仓库内已经提供镜像目录：
+
+- `.claude/skills/me-skill/`
+
+## 输出结果
+
+默认会生成到：
 
 - `selves/<slug>/records.json`
 - `selves/<slug>/self.md`
@@ -79,9 +103,17 @@ python run_test_flow.py --name my_me --notes path/to/notes.txt
 - `selves/<slug>/profile.md`
 - `selves/<slug>/versions/`
 
+其中：
+
+- `records.json`：累计输入材料
+- `self.md`：事实 / 偏好 / 价值观 / 边界
+- `persona.md`：风格 / 情绪 / 决策 / 反例
+- `profile.md`：最终模拟摘要
+- `versions/`：历史备份
+
 ## 当前抽取逻辑
 
-生成器会用轻量规则把材料拆成：
+当前版本使用轻量规则把材料拆成：
 
 - 明确事实
 - 稳定偏好
@@ -93,107 +125,28 @@ python run_test_flow.py --name my_me --notes path/to/notes.txt
 - 反例 / 不像我的表达
 - 代表性原句
 
-这不是大模型推理版分析器，而是一个可直接运行的最小实用版。
+它现在更像一个 **可运行的 MVP skill 仓库**，而不是最终形态的强智能 persona 系统。
 
 ## 当前限制
 
-- 还不支持直接解析微信/QQ 原始导出文件
-- 目前主要支持纯文本和简易聊天格式
-- 分类逻辑是启发式规则，适合做第一版草稿，仍建议人工修正
+- 还不支持直接解析微信 / QQ 原始导出
+- 当前更适合 txt / md 这类文本材料
+- 分类逻辑主要是启发式规则，不是深度模型归纳
+- 生成结果建议人工继续修正
 
-## 推荐用法
+## 一个典型工作流
 
-1. 准备自述、聊天样本、他人评价、纠正语句
-2. 先导入成 JSON records
-3. 用 `generate_me.py` 生成初版 me
-4. 用 `update_me.py` 持续修正
-5. 在 `profile.md` 中沉淀最终模拟边界
+1. 准备 notes
+2. 再补 chat
+3. 再补 correction
+4. 生成第一版 me
+5. 持续追加材料，逐步修正 `profile.md`
 
-## 测试材料生成流程
+## 仓库定位
 
-下面这套流程就是仓库里已经跑通过的“自产自销”测试样例。
+如果放在 GitHub 上，这个仓库更适合被理解成：
 
-### 1. 准备测试材料
-
-已生成在：
-
-- `templates/generated_test/test_notes.txt`
-- `templates/generated_test/test_chat.txt`
-- `templates/generated_test/test_correction.txt`
-
-你也可以自己新建同格式文件。
-
-### 2. 导入测试材料
-
-```bash
-python tools/import_text.py templates/generated_test/test_notes.txt --source self_notes --kind note --output templates/generated_test/test_notes.json
-python tools/import_chat.py templates/generated_test/test_chat.txt --source chat_sample --output templates/generated_test/test_chat.json
-python tools/import_text.py templates/generated_test/test_correction.txt --source correction_round --kind correction --output templates/generated_test/test_correction.json
-```
-
-### 3. 生成初版 me
-
-```bash
-python tools/generate_me.py templates/generated_test/test_notes.json templates/generated_test/test_chat.json --name generated_case --output-dir selves
-```
-
-### 4. 用纠正材料更新 me
-
-```bash
-python tools/update_me.py selves/generated_case templates/generated_test/test_correction.json
-```
-
-### 5. 查看结果
-
-结果会生成在：
-
-- `selves/generated_case/records.json`
-- `selves/generated_case/self.md`
-- `selves/generated_case/persona.md`
-- `selves/generated_case/profile.md`
-- `selves/generated_case/versions/`
-
-### 6. 一键运行测试流程
-
-也可以直接在项目根目录执行：
-
-```bash
-bash run_test_flow.sh
-```
-
-或者在 Windows / Python 环境下执行：
-
-```bash
-python run_test_flow.py
-```
-
-也可以指定你自己的材料：
-
-```bash
-python run_test_flow.py --name my_me --notes path/to/notes.txt --chat path/to/chat.txt --correction path/to/correction.txt
-```
-
-如果你暂时没有纠正材料，也可以先只用 notes + chat：
-
-```bash
-python run_test_flow.py --name my_me --notes path/to/notes.txt --chat path/to/chat.txt
-```
-
-如果你连 chat 都还没有，也可以只用 notes 先生成第一版：
-
-```bash
-python run_test_flow.py --name my_me --notes path/to/notes.txt
-```
-
-如果你有多份 notes 或多份 chat，也可以一次传多个文件：
-
-```bash
-python run_test_flow.py --name my_me --notes notes_a.txt notes_b.md --chat chat_a.txt chat_b.md --correction correction.txt
-```
-
-它会自动完成：
-- 导入测试材料
-- 生成 `generated_case`
-- 如果提供了 chat，就一并纳入生成
-- 如果提供了纠正材料，就继续更新
-- 打印最终输出目录和文件列表
+- 一个 Claude Code skill 项目
+- 一个个人数字分身整理工具
+- 一个从文本材料生成 me profile 的工作流模板
+- 一个可继续扩展成完整 skill 产品的基础仓库
