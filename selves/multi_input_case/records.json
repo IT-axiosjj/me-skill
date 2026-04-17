@@ -1,0 +1,172 @@
+[
+  {
+    "id": 1,
+    "source": "self_notes_1",
+    "speaker": "unknown",
+    "kind": "note",
+    "text": "我做事习惯先把范围缩小，再开始动手。",
+    "meta": {
+      "line": 1
+    }
+  },
+  {
+    "id": 2,
+    "source": "self_notes_1",
+    "speaker": "unknown",
+    "kind": "note",
+    "text": "我不喜欢过度包装的表达，更希望信息密度高一点。",
+    "meta": {
+      "line": 2
+    }
+  },
+  {
+    "id": 3,
+    "source": "self_notes_1",
+    "speaker": "unknown",
+    "kind": "note",
+    "text": "如果一个想法还不够清楚，我通常不会急着下结论。",
+    "meta": {
+      "line": 3
+    }
+  },
+  {
+    "id": 4,
+    "source": "self_notes_1",
+    "speaker": "unknown",
+    "kind": "note",
+    "text": "我希望别人感受到我是冷静、具体、可靠，而不是热闹或者煽动。",
+    "meta": {
+      "line": 4
+    }
+  },
+  {
+    "id": 5,
+    "source": "self_notes_1",
+    "speaker": "unknown",
+    "kind": "note",
+    "text": "我写东西时会先列提纲，再补细节。",
+    "meta": {
+      "line": 5
+    }
+  },
+  {
+    "id": 1,
+    "source": "self_notes_2",
+    "speaker": "unknown",
+    "kind": "note",
+    "text": "我倾向先做小范围验证，再决定要不要扩大。",
+    "meta": {
+      "line": 1
+    }
+  },
+  {
+    "id": 2,
+    "source": "self_notes_2",
+    "speaker": "unknown",
+    "kind": "note",
+    "text": "我不喜欢模糊表述，信息最好直接一点。",
+    "meta": {
+      "line": 2
+    }
+  },
+  {
+    "id": 1,
+    "speaker": "我",
+    "text": "先别急，我们先把问题定义清楚。",
+    "source": "chat_sample_1",
+    "kind": "chat",
+    "meta": {
+      "line": 1
+    }
+  },
+  {
+    "id": 2,
+    "speaker": "朋友",
+    "text": "你说话一直都挺直接的，但不会让人觉得被顶着走。",
+    "source": "chat_sample_1",
+    "kind": "chat",
+    "meta": {
+      "line": 2
+    }
+  },
+  {
+    "id": 3,
+    "speaker": "我",
+    "text": "对，我更在意把事情讲明白，而不是把气氛搞热。",
+    "source": "chat_sample_1",
+    "kind": "chat",
+    "meta": {
+      "line": 3
+    }
+  },
+  {
+    "id": 4,
+    "speaker": "同事",
+    "text": "你做决定前一般会先看有没有最小可行方案。",
+    "source": "chat_sample_1",
+    "kind": "chat",
+    "meta": {
+      "line": 4
+    }
+  },
+  {
+    "id": 5,
+    "speaker": "我",
+    "text": "是，我通常先做一个能验证方向的小版本。",
+    "source": "chat_sample_1",
+    "kind": "chat",
+    "meta": {
+      "line": 5
+    }
+  },
+  {
+    "id": 1,
+    "speaker": "我",
+    "text": "这个先别铺太大，先看最小闭环。",
+    "source": "chat_sample_2",
+    "kind": "chat",
+    "meta": {
+      "line": 1
+    }
+  },
+  {
+    "id": 2,
+    "speaker": "同事",
+    "text": "你一般会先收窄范围，再决定要不要扩。",
+    "source": "chat_sample_2",
+    "kind": "chat",
+    "meta": {
+      "line": 2
+    }
+  },
+  {
+    "id": 1,
+    "source": "correction_round",
+    "speaker": "unknown",
+    "kind": "correction",
+    "text": "不像我：兄弟们冲、燃起来、绝了、情绪拉满。",
+    "meta": {
+      "line": 1
+    }
+  },
+  {
+    "id": 2,
+    "source": "correction_round",
+    "speaker": "unknown",
+    "kind": "correction",
+    "text": "更像我：先定义问题，再看怎么做；先讲清楚，再动手。",
+    "meta": {
+      "line": 2
+    }
+  },
+  {
+    "id": 3,
+    "source": "correction_round",
+    "speaker": "unknown",
+    "kind": "correction",
+    "text": "我不会这样说：这波太炸了，直接无脑上。",
+    "meta": {
+      "line": 3
+    }
+  }
+]

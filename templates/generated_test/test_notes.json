@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "source": "self_notes_1",
+    "speaker": "unknown",
+    "kind": "note",
+    "text": "我做事习惯先把范围缩小，再开始动手。",
+    "meta": {
+      "line": 1
+    }
+  },
+  {
+    "id": 2,
+    "source": "self_notes_1",
+    "speaker": "unknown",
+    "kind": "note",
+    "text": "我不喜欢过度包装的表达，更希望信息密度高一点。",
+    "meta": {
+      "line": 2
+    }
+  },
+  {
+    "id": 3,
+    "source": "self_notes_1",
+    "speaker": "unknown",
+    "kind": "note",
+    "text": "如果一个想法还不够清楚，我通常不会急着下结论。",
+    "meta": {
+      "line": 3
+    }
+  },
+  {
+    "id": 4,
+    "source": "self_notes_1",
+    "speaker": "unknown",
+    "kind": "note",
+    "text": "我希望别人感受到我是冷静、具体、可靠，而不是热闹或者煽动。",
+    "meta": {
+      "line": 4
+    }
+  },
+  {
+    "id": 5,
+    "source": "self_notes_1",
+    "speaker": "unknown",
+    "kind": "note",
+    "text": "我写东西时会先列提纲，再补细节。",
+    "meta": {
+      "line": 5
+    }
+  }
+]

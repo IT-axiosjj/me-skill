@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "source": "correction_round",
+    "speaker": "unknown",
+    "kind": "correction",
+    "text": "不像我：兄弟们冲、燃起来、绝了、情绪拉满。",
+    "meta": {
+      "line": 1
+    }
+  },
+  {
+    "id": 2,
+    "source": "correction_round",
+    "speaker": "unknown",
+    "kind": "correction",
+    "text": "更像我：先定义问题，再看怎么做；先讲清楚，再动手。",
+    "meta": {
+      "line": 2
+    }
+  },
+  {
+    "id": 3,
+    "source": "correction_round",
+    "speaker": "unknown",
+    "kind": "correction",
+    "text": "我不会这样说：这波太炸了，直接无脑上。",
+    "meta": {
+      "line": 3
+    }
+  }
+]

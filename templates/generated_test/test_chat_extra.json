@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "speaker": "我",
+    "text": "这个先别铺太大，先看最小闭环。",
+    "source": "chat_sample_2",
+    "kind": "chat",
+    "meta": {
+      "line": 1
+    }
+  },
+  {
+    "id": 2,
+    "speaker": "同事",
+    "text": "你一般会先收窄范围，再决定要不要扩。",
+    "source": "chat_sample_2",
+    "kind": "chat",
+    "meta": {
+      "line": 2
+    }
+  }
+]

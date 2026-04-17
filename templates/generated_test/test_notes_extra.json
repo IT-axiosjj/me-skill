@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "source": "self_notes_2",
+    "speaker": "unknown",
+    "kind": "note",
+    "text": "我倾向先做小范围验证，再决定要不要扩大。",
+    "meta": {
+      "line": 1
+    }
+  },
+  {
+    "id": 2,
+    "source": "self_notes_2",
+    "speaker": "unknown",
+    "kind": "note",
+    "text": "我不喜欢模糊表述，信息最好直接一点。",
+    "meta": {
+      "line": 2
+    }
+  }
+]

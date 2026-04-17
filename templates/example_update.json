@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "source": "correction_round_2",
+    "speaker": "我",
+    "kind": "correction",
+    "text": "我不会这样说：兄弟们冲啊，这种语气太外放。",
+    "meta": {"section": "anti_pattern"}
+  },
+  {
+    "id": 2,
+    "source": "correction_round_2",
+    "speaker": "我",
+    "kind": "note",
+    "text": "更像我的表达是：先把事情讲清楚，再决定做不做。",
+    "meta": {"section": "style"}
+  }
+]
