@@ -2,25 +2,121 @@
 
 [中文](./README.md) | [English](./README_EN.md)
 
-A Claude Code skill for building a structured personal self-profile.
+> Turn your text materials into a revisable, reusable personal-self skill.
 
-`me-skill` turns your text materials into a reusable me profile, helping you capture:
+`me-skill` is a Claude Code skill for organizing notes, chat samples, and correction materials into a structured me profile.
 
-- who you are
-- how you speak
-- what you value
-- where your boundaries are
-- what clearly does not sound like you
+Final outputs:
 
-## Features
+- `self.md`
+- `persona.md`
+- `profile.md`
+- `records.json`
 
-- import notes, chat, and correction materials
-- generate `self.md`, `persona.md`, and `profile.md`
-- support incremental updates
-- keep version history automatically
-- support single-file and multi-file inputs
+[Install](#install) · [Usage](#usage) · [Example](#example) · [Project Structure](#project-structure) · [中文](./README.md)
 
-## Output
+---
+
+## Install
+
+### Install as a Claude Code skill
+
+Copy the mirror directory into your Claude Code skills folder:
+
+```text
+.claude/skills/me-skill/
+```
+
+Or the global directory:
+
+```text
+~/.claude/skills/me-skill/
+```
+
+This repository already includes the mirror directory:
+
+```text
+.claude/skills/me-skill/
+```
+
+### Use as a local workflow
+
+Clone the repository and run the Python scripts directly.
+
+Requirements:
+
+- Python 3
+- standard library only in the current version
+
+---
+
+## Usage
+
+### Quick start
+
+Run the built-in sample:
+
+```bash
+python run_test_flow.py
+```
+
+### Generate your own me profile
+
+#### Notes only
+
+```bash
+python run_test_flow.py --name my_me --notes path/to/notes.txt
+```
+
+#### Notes + chat
+
+```bash
+python run_test_flow.py --name my_me --notes path/to/notes.txt --chat path/to/chat.txt
+```
+
+#### Notes + chat + correction
+
+```bash
+python run_test_flow.py --name my_me --notes path/to/notes.txt --chat path/to/chat.txt --correction path/to/correction.txt
+```
+
+#### Multiple files
+
+```bash
+python run_test_flow.py --name my_me --notes notes_a.txt notes_b.md --chat chat_a.txt chat_b.md --correction correction.txt
+```
+
+### Material format
+
+#### notes
+
+Good for:
+
+- self description
+- diary excerpts
+- preferences
+- principles and boundaries
+
+#### chat
+
+Recommended format:
+
+```text
+Me: Let's define the problem first.
+Friend: Your tone is direct, but not aggressive.
+```
+
+#### correction
+
+Recommended format:
+
+```text
+Not like me: too emotional, too exaggerated, too preachy.
+More like me: explain clearly first, then act.
+I would not say: just rush in blindly.
+```
+
+### Output files
 
 Generated files are written to:
 
@@ -36,83 +132,96 @@ Where:
 - `persona.md`: style, emotion/attitude, decision tendencies, anti-patterns
 - `profile.md`: final summary and simulation rules
 - `records.json`: accumulated source materials
+- `versions/`: automatic backups before updates
 
-## Installation
+---
 
-### Install as a Claude Code skill
+## Example
 
-Copy the mirrored directory into your Claude Code skills folder:
-
-- project-level: `.claude/skills/me-skill/`
-- global: `~/.claude/skills/me-skill/`
-
-This repository already includes the mirror directory:
-
-- `.claude/skills/me-skill/`
-
-### Use as a local workflow tool
-
-Clone the repository and run the Python scripts directly.
-
-## Quick Start
-
-### Run the built-in sample
-
-```bash
-python run_test_flow.py
-```
-
-### Use your own materials
-
-```bash
-python run_test_flow.py --name my_me --notes path/to/notes.txt --chat path/to/chat.txt --correction path/to/correction.txt
-```
-
-### Start with notes only
-
-```bash
-python run_test_flow.py --name my_me --notes path/to/notes.txt
-```
-
-### Use multiple files at once
-
-```bash
-python run_test_flow.py --name my_me --notes notes_a.txt notes_b.md --chat chat_a.txt chat_b.md --correction correction.txt
-```
-
-## Material Format
-
-### notes
-Good for:
-- self description
-- diary excerpts
-- preferences
-- principles and boundaries
-
-### chat
-Recommended format:
+A typical output structure looks like this:
 
 ```text
-Me: Let's define the problem first.
-Friend: Your tone is direct, but not aggressive.
+selves/generated_case/
+├── records.json
+├── self.md
+├── persona.md
+├── profile.md
+└── versions/
 ```
 
-### correction
-Recommended format:
+Where:
 
-```text
-Not like me: too emotional, too exaggerated, too preachy.
-More like me: explain clearly first, then act.
-I would not say: just rush in blindly.
-```
+- `self.md` describes who you are
+- `persona.md` describes how you speak
+- `profile.md` describes how to simulate you
+
+---
+
+## Features
+
+### Supported input types
+
+| Type | Purpose |
+| --- | --- |
+| notes | self description, preferences, principles, background |
+| chat | real speaking style and interaction patterns |
+| correction | anti-patterns and explicit corrections |
+
+### Current capabilities
+
+- import text materials
+- import simple chat transcripts
+- generate a me profile
+- update an existing me profile incrementally
+- keep version history automatically
+- support single-file and multi-file input
+
+### Current extraction dimensions
+
+- facts
+- stable preferences
+- style signals
+- values
+- boundaries
+- emotion / attitude
+- decision tendencies
+- anti-patterns / what does not sound like you
+- representative quotes
+
+---
 
 ## Project Structure
 
-- `SKILL.md`: skill entry
-- `prompts/`: interview, analysis, build, merge, and correction templates
-- `tools/`: import, generate, update, and backup scripts
-- `templates/`: sample materials and helper docs
-- `selves/`: generated me profiles
+```text
+me-skill/
+├── SKILL.md
+├── prompts/
+├── tools/
+├── templates/
+├── selves/
+├── run_test_flow.py
+└── .claude/skills/me-skill/
+```
+
+| Path | Purpose |
+| --- | --- |
+| `SKILL.md` | skill entry definition |
+| `prompts/` | interview, analysis, build, and correction templates |
+| `tools/` | import, generate, update, and backup scripts |
+| `templates/` | sample materials and helper docs |
+| `selves/` | generated me profiles |
+| `.claude/skills/me-skill/` | installable mirror directory |
+
+---
+
+## Notes
+
+- currently works best with txt / md text materials
+- does not yet parse raw WeChat / QQ exports directly
+- classification is heuristic, so manual review is recommended
+- the current version is best viewed as a runnable MVP skill repository
+
+---
 
 ## Docs
 
@@ -120,8 +229,8 @@ I would not say: just rush in blindly.
 - [What me-skill does](./WHAT_IS_ME_SKILL.md)
 - [Skill entry](./SKILL.md)
 
-## Current Limitations
+---
 
-- mainly supports txt / md text materials for now
-- does not yet parse raw WeChat / QQ exports directly
-- classification is heuristic, so manual review is still recommended
+## License
+
+MIT
