@@ -4,26 +4,19 @@
 
 [中文](./README.md) | [English](./README_EN.md)
 
+![Claude Code Skill](https://img.shields.io/badge/Claude%20Code-Skill-7C3AED)
+![Python](https://img.shields.io/badge/Python-3.x-3776AB)
+![Status](https://img.shields.io/badge/Status-MVP-10B981)
+
 **A Claude Code skill for building a personal self-profile**
 
-_Turn scattered notes, chat logs, and “this does not sound like me” corrections into a proper me profile._
+_Turn scattered materials into a proper me profile._
 
-_In short: it helps you sort out who you are, how you speak, and what kind of nonsense you would definitely never say._
+_And clean up all the lines that definitely do not sound like you._
 
-[Install](#install) · [Usage](#usage) · [Example](#example) · [Project Structure](#project-structure) · [中文](./README.md)
+[Install](#install) · [Usage](#usage) · [Example](#example) · [Docs](#docs)
 
 </div>
-
-`me-skill` is a Claude Code skill for organizing notes, chat samples, and correction materials into a structured me profile.
-
-Final outputs:
-
-- `self.md`
-- `persona.md`
-- `profile.md`
-- `records.json`
-
-[Install](#install) · [Usage](#usage) · [Example](#example) · [Project Structure](#project-structure) · [中文](./README.md)
 
 ---
 
