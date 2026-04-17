@@ -1,8 +1,18 @@
+<div align="center">
+
 # me-skill
 
 [中文](./README.md) | [English](./README_EN.md)
 
-> Turn your text materials into a revisable, reusable personal-self skill.
+**A Claude Code skill for building a personal self-profile**
+
+_Turn scattered notes, chat logs, and “this does not sound like me” corrections into a proper me profile._
+
+_In short: it helps you sort out who you are, how you speak, and what kind of nonsense you would definitely never say._
+
+[Install](#install) · [Usage](#usage) · [Example](#example) · [Project Structure](#project-structure) · [中文](./README.md)
+
+</div>
 
 `me-skill` is a Claude Code skill for organizing notes, chat samples, and correction materials into a structured me profile.
 

@@ -1,8 +1,18 @@
+<div align="center">
+
 # me-skill
 
 [中文](./README.md) | [English](./README_EN.md)
 
-> 把你的文本材料整理成一个可持续修正、可持续迭代的个人分身 skill。
+**一个用于构建个人分身资料的 Claude Code skill**
+
+_把零散的 notes、聊天记录和“这话不像我”收拾成一份像样的 me profile。_
+
+_简单说：帮你把“我是谁、我怎么说话、我到底不会说什么鬼话”整理明白。_
+
+[安装](#安装) · [使用](#使用) · [效果示例](#效果示例) · [项目结构](#项目结构) · [English](./README_EN.md)
+
+</div>
 
 `me-skill` 是一个面向 Claude Code 的个人分身工具，用来把 notes、chat、correction 等材料整理成结构化的 me profile。
 
