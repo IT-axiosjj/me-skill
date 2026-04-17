@@ -2,95 +2,46 @@
 
 [中文](./README.md) | [English](./README_EN.md)
 
-`me-skill` is a **Claude Code personal-self skill** for turning your own materials into a structured, revisable me profile.
+A Claude Code skill for building a structured personal self-profile.
 
-It is inspired by the direction of `yourself-skill`, but the current version is closer to a **practical MVP**:
+`me-skill` turns your text materials into a reusable me profile, helping you capture:
 
-- collect notes / chat / correction materials
+- who you are
+- how you speak
+- what you value
+- where your boundaries are
+- what clearly does not sound like you
+
+## Features
+
+- import notes, chat, and correction materials
 - generate `self.md`, `persona.md`, and `profile.md`
-- keep updating the profile as new materials arrive
+- support incremental updates
+- keep version history automatically
+- support single-file and multi-file inputs
 
-## What problem it tries to solve
+## Output
 
-Many "digital self" projects focus too much on surface tone mimicry. The result is often:
+Generated files are written to:
 
-- somewhat similar style, but unstable
-- facts, values, and boundaries mixed together
-- no clear idea of what sounds like you and what clearly does not
+- `selves/<slug>/records.json`
+- `selves/<slug>/self.md`
+- `selves/<slug>/persona.md`
+- `selves/<slug>/profile.md`
+- `selves/<slug>/versions/`
 
-`me-skill` tries to separate these layers:
+Where:
 
-- **self**: who you are, your preferences, values, and boundaries
-- **persona**: how you speak, how you express emotions, how you tend to decide
-- **profile**: the final summary used for simulation and reuse
+- `self.md`: facts, preferences, values, boundaries
+- `persona.md`: style, emotion/attitude, decision tendencies, anti-patterns
+- `profile.md`: final summary and simulation rules
+- `records.json`: accumulated source materials
 
-## Who this is for
+## Installation
 
-- people who want to build their own Claude Code personal skill
-- people who want to preserve long-term communication patterns
-- people who want to turn scattered materials into structured personal assets
-- people who want a repository that can later grow into a more complete skill product
+### Install as a Claude Code skill
 
-## Documentation
-
-- [Installation & Usage](./INSTALL_AND_USAGE.md)
-- [What me-skill does](./WHAT_IS_ME_SKILL.md)
-- [Skill entry](./SKILL.md)
-
-## What this repository is
-
-This repository is not just a collection of Python scripts.
-
-More accurately, it has two layers:
-
-### 1. Skill layer
-- `SKILL.md`
-- `.claude/skills/me-skill/`
-- `prompts/`
-
-This is the part that makes it a Claude Code skill project.
-
-### 2. Workflow layer
-- `tools/import_text.py`
-- `tools/import_chat.py`
-- `tools/generate_me.py`
-- `tools/update_me.py`
-- `run_test_flow.py`
-
-This is the part that makes it runnable as a practical MVP.
-
-## Current capabilities
-
-- import plain text materials: `tools/import_text.py`
-- import simple chat transcripts: `tools/import_chat.py`
-- generate a me profile from one or more JSON record files: `tools/generate_me.py`
-- update an existing me profile with new materials: `tools/update_me.py`
-- run an end-to-end sample or real-material flow: `run_test_flow.py`
-- back up current versions: `tools/version_manager.py`
-
-## Quick start
-
-### Option 1: run the built-in sample
-
-```bash
-python run_test_flow.py
-```
-
-### Option 2: use your own materials
-
-```bash
-python run_test_flow.py --name my_me --notes path/to/notes.txt --chat path/to/chat.txt --correction path/to/correction.txt
-```
-
-### Option 3: start with notes only
-
-```bash
-python run_test_flow.py --name my_me --notes path/to/notes.txt
-```
-
-## Install as a Claude Code skill
-
-If you want to use it in skill form, copy the mirrored directory into your Claude Code skills folder:
+Copy the mirrored directory into your Claude Code skills folder:
 
 - project-level: `.claude/skills/me-skill/`
 - global: `~/.claude/skills/me-skill/`
@@ -99,51 +50,78 @@ This repository already includes the mirror directory:
 
 - `.claude/skills/me-skill/`
 
-## Output structure
+### Use as a local workflow tool
 
-By default, generated files are written to:
+Clone the repository and run the Python scripts directly.
 
-- `selves/<slug>/records.json`
-- `selves/<slug>/self.md`
-- `selves/<slug>/persona.md`
-- `selves/<slug>/profile.md`
-- `selves/<slug>/versions/`
+## Quick Start
 
-## Current extraction logic
+### Run the built-in sample
 
-The generator currently uses lightweight heuristic rules to split materials into:
+```bash
+python run_test_flow.py
+```
 
-- facts
-- stable preferences
-- style signals
-- values
-- boundaries
-- emotion / attitude
-- decision tendencies
-- anti-patterns / expressions that do not sound like you
-- representative quotes
+### Use your own materials
 
-It is better described as a **runnable MVP skill repository**, not a fully mature persona intelligence system.
+```bash
+python run_test_flow.py --name my_me --notes path/to/notes.txt --chat path/to/chat.txt --correction path/to/correction.txt
+```
 
-## Current limitations
+### Start with notes only
 
+```bash
+python run_test_flow.py --name my_me --notes path/to/notes.txt
+```
+
+### Use multiple files at once
+
+```bash
+python run_test_flow.py --name my_me --notes notes_a.txt notes_b.md --chat chat_a.txt chat_b.md --correction correction.txt
+```
+
+## Material Format
+
+### notes
+Good for:
+- self description
+- diary excerpts
+- preferences
+- principles and boundaries
+
+### chat
+Recommended format:
+
+```text
+Me: Let's define the problem first.
+Friend: Your tone is direct, but not aggressive.
+```
+
+### correction
+Recommended format:
+
+```text
+Not like me: too emotional, too exaggerated, too preachy.
+More like me: explain clearly first, then act.
+I would not say: just rush in blindly.
+```
+
+## Project Structure
+
+- `SKILL.md`: skill entry
+- `prompts/`: interview, analysis, build, merge, and correction templates
+- `tools/`: import, generate, update, and backup scripts
+- `templates/`: sample materials and helper docs
+- `selves/`: generated me profiles
+
+## Docs
+
+- [Installation & Usage](./INSTALL_AND_USAGE.md)
+- [What me-skill does](./WHAT_IS_ME_SKILL.md)
+- [Skill entry](./SKILL.md)
+
+## Current Limitations
+
+- mainly supports txt / md text materials for now
 - does not yet parse raw WeChat / QQ exports directly
-- currently works best with txt / md style text materials
 - classification is heuristic, so manual review is still recommended
-
-## Typical workflow
-
-1. start with notes
-2. add chat samples
-3. add correction materials
-4. generate the first me profile
-5. keep refining `profile.md`
-
-## Repository positioning
-
-On GitHub, this project is best described as:
-
-- a Claude Code skill project
-- a personal digital-self organizer
-- a workflow template for building a me profile from text materials
-- a foundation repository that can grow into a more complete skill product
